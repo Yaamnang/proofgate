@@ -1,0 +1,16 @@
+{
+  "name": "proofgate",
+  "version": "1.0.0",
+  "description": "Verifies open-source vulnerability reports by executing them safely in a disposable sandbox and returns independently re-runnable evidence.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ProofGate - prove the vulnerability</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">◈</span>
+    <div>
+      <h1>ProofGate</h1>
+      <p class="tagline">Anyone can claim a vulnerability. We make them prove it.</p>
+    </div>
+  </div>
+  <div class="env" id="env">
+    <div class="env-item"><span class="env-label">model</span><span class="env-val" id="envModel">…</span></div>
+    <div class="env-item"><span class="env-label">runtime</span><span class="env-val" id="envRuntime">…</span></div>
+    <div class="env-item"><span class="env-label">inference</span><span class="env-val" id="envInference">…</span></div>
+  </div>
+</header>
+
+<main class="grid">
+  <!-- LEFT: report queue -->
+  <section class="col col-queue">
+    <h2 class="col-title">Report queue</h2>
+    <div class="queue" id="queue">
+      <div class="empty">Loading reports…</div>
+    </div>
+    <p class="hint">Click a report to verify it in a fresh sandbox.</p>
+  </section>
+
+  <!-- MIDDLE: live run + containment -->
+  <section class="col col-run">
+    <h2 class="col-title">Live verification
+      <span class="active-report" id="activeReport"></span>
+    </h2>
+
+    <div class="containment" id="containment">
+      <div class="containment-head">
+        <span class="shield">🛡</span> Containment
+        <span class="runtime-chip" id="runtimeChip">...</span>
+      </div>
+      <div class="guards" id="guards">
+        <div class="guard" data-k="network"><span class="dot"></span>network blocked</div>
+        <div class="guard" data-k="secrets"><span class="dot"></span>no secrets mounted</div>
+        <div class="guard" data-k="user"><span class="dot"></span>non-root user</div>
+        <div class="guard" data-k="rootfs"><span class="dot"></span>read-only rootfs</div>
+        <div class="guard" data-k="caps"><span class="dot"></span>cpu / mem / pids caps</div>
+        <div class="guard" data-k="destroy"><span class="dot"></span>container destroyed after</div>
+      </div>
+      <div class="caps-line" id="capsLine"></div>
+      <div class="blocks" id="blocks"></div>
+    </div>
+
+    <div class="stages" id="stages">
+      <div class="stage" data-s="extract">extract</div>
+      <div class="stage" data-s="static">static</div>
+      <div class="stage" data-s="dynamic">dynamic</div>
+      <div class="stage" data-s="adversarial">adversarial</div>
+      <div class="stage" data-s="verdict">verdict</div>
+      <div class="stage" data-s="evidence">evidence</div>
+    </div>
+
+    <div class="console-wrap">
+      <div class="console-head">sandbox log</div>
+      <pre class="console" id="console"></pre>
+    </div>
+  </section>
+
+  <!-- RIGHT: verdict -->
+  <section class="col col-verdict">
+    <h2 class="col-title">Verdict</h2>
+    <div class="verdict-card" id="verdictCard">
+      <div class="verdict-badge idle" id="verdictBadge">AWAITING RUN</div>
+      <p class="verdict-summary" id="verdictSummary">Select a report to begin.</p>
+
+      <div class="section">
+        <h3>Claims</h3>
+        <div class="claims" id="claims"><div class="empty">No claims yet.</div></div>
+      </div>
+
+      <div class="section">
+        <h3>Adversarial review</h3>
+        <div class="adversarial" id="adversarial"><div class="empty">not run yet</div></div>
+      </div>
+
+      <div class="actions">
+        <a class="btn btn-primary disabled" id="downloadBtn" href="#">Download evidence</a>
+        <button class="btn btn-ghost" id="rerunBtn" disabled>Reproduce again</button>
+      </div>
+      <p class="rerun-note" id="rerunNote"></p>
+    </div>
+  </section>
+</main>
+
+<script src="/app.js"></script>
+</body>
+</html>

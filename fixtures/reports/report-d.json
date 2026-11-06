@@ -1,0 +1,13 @@
+{
+  "id": "D",
+  "title": "Path traversal in /note allows reading files outside notes/",
+  "severity": "critical",
+  "repo": "demo-repo.bundle",
+  "commit": "0f39538306683a7935d4e73e64ea466e10e2bb88",
+  "body": "getNote() in server.js builds the file path by concatenating the user-controlled `name` parameter directly onto the notes directory with no normalisation. Supplying a traversal sequence escapes the notes directory and reads arbitrary files. PoC: GET /note?name=../secret.txt returns the contents of secret.txt, which lives outside notes/. Affected file: server.js, function getNote. CWE-22.",
+  "expected": "REPRODUCED",
+  "poc": {
+    "file": "poc-d.js",
+    "needsServer": true
+  }
+}

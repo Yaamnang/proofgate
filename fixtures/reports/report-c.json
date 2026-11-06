@@ -1,0 +1,13 @@
+{
+  "id": "C",
+  "title": "Denial of service via oversized note on Node < 18",
+  "severity": "medium",
+  "repo": "demo-repo.bundle",
+  "commit": "0f39538306683a7935d4e73e64ea466e10e2bb88",
+  "expected": "INCONCLUSIVE",
+  "body": "On Node.js versions below 18, reading a very large note through getNote crashes the process because of a legacy Buffer allocation path, causing denial of service. This only reproduces on Node < 18 and when the DEMO_LEGACY_BUFFER environment flag is set, matching the maintainer's documented production build. PoC attempts to trigger the crash.",
+  "poc": {
+    "file": "poc-c.js",
+    "needsServer": true
+  }
+}

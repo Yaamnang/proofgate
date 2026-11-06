@@ -1,0 +1,10 @@
+{
+  "name": "demo-app",
+  "version": "1.4.0",
+  "description": "Deliberately vulnerable mini document service for ProofGate demos",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "license": "MIT"
+}

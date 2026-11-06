@@ -1,0 +1,13 @@
+{
+  "id": "A",
+  "title": "Stored XSS via renderMarkdown() in note rendering",
+  "severity": "high",
+  "repo": "demo-repo.bundle",
+  "commit": "0f39538306683a7935d4e73e64ea466e10e2bb88",
+  "expected": "CONTRADICTED",
+  "body": "The function renderMarkdown() in server.js passes stored note content through an unescaped markdown renderer before returning it, allowing stored XSS. An attacker who writes a note containing a <script> payload gets it executed in any viewer's browser. Affected file: server.js, function renderMarkdown(). Fix: escape HTML before rendering.",
+  "poc": {
+    "file": "poc-a.js",
+    "needsServer": true
+  }
+}

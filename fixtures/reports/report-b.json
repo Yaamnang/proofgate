@@ -1,0 +1,13 @@
+{
+  "id": "B",
+  "title": "Information disclosure: /note leaks arbitrary notes",
+  "severity": "medium",
+  "repo": "demo-repo.bundle",
+  "commit": "0f39538306683a7935d4e73e64ea466e10e2bb88",
+  "expected": "NOT_REPRODUCED",
+  "body": "The /note endpoint in server.js (function getNote) returns note contents without authentication. By requesting /note?name=welcome.txt an unauthenticated attacker can read sensitive notes, a serious information disclosure. PoC requests a note and shows the server returns its body.",
+  "poc": {
+    "file": "poc-b.js",
+    "needsServer": true
+  }
+}

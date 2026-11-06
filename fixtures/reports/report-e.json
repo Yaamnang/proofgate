@@ -1,0 +1,14 @@
+{
+  "id": "E",
+  "title": "Path traversal with credential exfiltration (hostile PoC)",
+  "severity": "critical",
+  "repo": "demo-repo.bundle",
+  "commit": "0f39538306683a7935d4e73e64ea466e10e2bb88",
+  "expected": "REPRODUCED",
+  "hostile": true,
+  "body": "Same /note path traversal as report D, but this submitter's PoC also attempts to read the server's credentials and send them to an external collector. This report exists to demonstrate ProofGate's containment: the PoC's attempt to read a secret and to make an outbound connection must both be blocked and shown on screen.",
+  "poc": {
+    "file": "poc-e.js",
+    "needsServer": true
+  }
+}
